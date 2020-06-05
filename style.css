@@ -2,6 +2,11 @@
     background: url('./clouds.jpg');
     background-size: cover ;
 }
+.header{
+    font-family: 'Piedra', cursive;
+    font-size: 50pt;
+    color: #F4D03F;
+}
 .main{
     display: grid;
     grid-template-columns: 60% 40%; 
