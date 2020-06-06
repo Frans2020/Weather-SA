@@ -1,7 +1,7 @@
 let city = "Johannesburg";
 
 const request = new XMLHttpRequest();
-request.open('GET','http://api.openweathermap.org/data/2.5/weather?q='+city+'&appid=df72bc4f64d8ca49470dca561bf8bc86&units=metric');
+request.open('GET','https://api.openweathermap.org/data/2.5/weather?q='+city+'&appid=df72bc4f64d8ca49470dca561bf8bc86&units=metric');
 request.send(null); 
 
 const button = document.querySelector('.btn');
@@ -15,7 +15,7 @@ function search(event){
     }
     else{
         const request = new XMLHttpRequest();
-        request.open('GET','http://api.openweathermap.org/data/2.5/weather?q='+input.value+'&appid=df72bc4f64d8ca49470dca561bf8bc86&units=metric');  
+        request.open('GET','https://api.openweathermap.org/data/2.5/weather?q='+input.value+'&appid=df72bc4f64d8ca49470dca561bf8bc86&units=metric');  
         
         request.onreadystatechange = function(){ 
             
