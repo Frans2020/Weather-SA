@@ -1,7 +1,7 @@
 let city = "Johannesburg";
 
 const request = new XMLHttpRequest();
-request.open('GET','https://api.openweathermap.org/data/2.5/weather?q='+city+'&appid=df72bc4f64d8ca49470dca561bf8bc86&units=metric');
+request.open('GET','https://api.openweathermap.org/data/2.5/weather?q='+city+'&appid=df72bc4f64d8ca49470dca561bf8bc86&units=metric',true);
 request.send(null); 
 
 const button = document.querySelector('.btn');
@@ -15,14 +15,10 @@ function search(event){
     }
     else{
         const request = new XMLHttpRequest();
-        request.open('GET','https://api.openweathermap.org/data/2.5/weather?q='+input.value+'&appid=df72bc4f64d8ca49470dca561bf8bc86&units=metric');  
+        request.open('GET','https://api.openweathermap.org/data/2.5/weather?q='+input.value+'&appid=df72bc4f64d8ca49470dca561bf8bc86&units=metric',true);  
         
-        request.onreadystatechange = function(){ 
-            
-            if(request.readyState == 4 && request.statusText == ""){
-                alert('Location not available.....');
-            }
-            else if(request.readyState == 4 && request.statusText == "OK"){
+        request.onreadystatechange = function(){  
+            if(request.readyState == 4 && request.status == 200){
                 let weather = JSON.parse(request.responseText)
                 let temperature = weather.main.temp;
                 document.getElementById('temp').innerHTML = temperature.toFixed(0) + '&deg';
@@ -39,10 +35,12 @@ function search(event){
                  
                 document.getElementById('icon').src ="http://openweathermap.org/img/w/" + weather.weather[0].icon + ".png";
                 input.value = "";
+            } 
+            if (request.readyState == 4 && request.status == 404) {
+                alert('Location doesn\'t exist verify and try again....');
             }
-        }
-            request.send();
- 
+        } 
+                request.send(null);
     }
        
 }
